@@ -91,7 +91,7 @@ for n in [5,10,15,20]:
         del(H_2[i])
         i-=1
     Q=gram_schmidt(H_2)
-    print('Für n= ',n,' gibt das GRam-Schmidt-Verfahren die Matrix ',Q,' zurück')
+    print('Für n= ',n,' gibt das Gram-Schmidt-Verfahren die Matrix ',Q,' zurück')
 
 
 # ## c)
