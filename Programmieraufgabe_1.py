@@ -85,7 +85,13 @@ print(B)
 H = hilbert(30)
 
 for n in [5,10,15,20]:
-    ## Ihr Code hier
+    i=30
+    H_2=H
+    while i>n:
+        del(H_2[i])
+        i-=1
+    Q=gram_schmidt(H_2)
+    print('Für n= ',n,' gibt das GRam-Schmidt-Verfahren die Matrix ',Q,' zurück')
 
 
 # ## c)
