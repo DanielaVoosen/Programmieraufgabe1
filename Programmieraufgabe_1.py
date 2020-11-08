@@ -96,6 +96,8 @@ for n in [5,10,15,20]:
         i-=1
     Q=gram_schmidt(H_2)
     print('Für n= ',n,' gibt das Gram-Schmidt-Verfahren die Matrix ',Q,' zurück')
+    
+    #HIER FEHLT DER ZWEITE TEIL
 
 
 # ## c)
