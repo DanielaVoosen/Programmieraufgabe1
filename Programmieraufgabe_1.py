@@ -13,7 +13,7 @@ from scipy.linalg import norm, hilbert
 # ## a)
 
 # In[2]:
-def skalarprodukt(V,W):
+def skalarprodukt(V,W):#Normales Skalarprodukt
     n=len(V)
     x=0
     i=0
@@ -22,7 +22,7 @@ def skalarprodukt(V,W):
         i=i+1
     return x
 
-def multskalar(a,W):
+def multskalar(a,W):#Multiplikation: Skalar, Vektor
     n=len(W)
     B=[]
     i=0
@@ -31,7 +31,7 @@ def multskalar(a,W):
         i=i+1
     return B
 
-def subtrahiere(V,W):
+def subtrahiere(V,W):#Vektorsubtraktion
     n=len(V)
     B=[]
     i=0
@@ -45,8 +45,8 @@ def gram_schmidt(A):
     m=len(A[0])
     print(n,m)
     Q=A #wird am ende ausgegeben
-    spalte=1
-    while spalte<m:
+    spalte=1# da Q=A kann in Spalte 1, bzw 2, angefangen werden
+    while spalte<m:# die restlichenw erden durchgegangen
         print('spalte ',spalte+1)
         altespalte=[]
         z=0
