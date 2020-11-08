@@ -61,11 +61,11 @@ def gram_schmidt(A):
             a=skalarprodukt(V,altespalte)
             b=skalarprodukt(V,V)
             C=multskalar(a/b,V)
-            neuespalte=subtrahiere(neuespalte, C)
+            neuespalte=subtrahiere(neuespalte, C)#entspricht der Summe
             i=i+1        
         t=0
         while t<n:
-            Q[t][spalte]=neuespalte[t]
+            Q[t][spalte]=neuespalte[t]#Einträge in Q werden geändert
             t=t+1
         spalte=spalte+1
         
