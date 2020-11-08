@@ -74,6 +74,9 @@ def gram_schmidt(A):
 A=[[3,2],[1,2],[2,2]]
 B=gram_schmidt(A)
 print(B)
+#Ergebnnis nach Wikipedia: [[3,-4/7],[1,8/7],[2,2/7]]
+
+
 # ## b)
 
 # In[3]:
