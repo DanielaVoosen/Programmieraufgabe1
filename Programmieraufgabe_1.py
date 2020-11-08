@@ -70,7 +70,10 @@ def gram_schmidt(A):
         
     return Q
 
-
+#Testmatrix:
+A=[[3,2],[1,2],[2,2]]
+B=gram_schmidt(A)
+print(B)
 # ## b)
 
 # In[3]:
