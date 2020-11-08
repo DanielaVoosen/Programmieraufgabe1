@@ -46,8 +46,7 @@ def gram_schmidt(A):
     print(n,m)
     Q=A #wird am ende ausgegeben
     spalte=1# da Q=A kann in Spalte 1, bzw 2, angefangen werden
-    while spalte<m:# die restlichenw erden durchgegangen
-        print('spalte ',spalte+1)
+    while spalte<m:# die restlichen Spalten werden durchgegangen
         altespalte=[]
         z=0
         V=[]
