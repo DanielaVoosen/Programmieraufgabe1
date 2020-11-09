@@ -103,10 +103,29 @@ for n in [5,10,15,20]:
 # In[4]:
 
 
-def mod_gram_schmidt(V):
-    Q = np.copy(V)
-    ## Ihr Code hier
-    
+ddef mod_gram_schmidt(A):
+    Q=A
+    n=len(A)
+    i=1
+    while i < n:
+        U=[]
+        a=0
+        while a<n:
+            U.append(Q[a][i])
+            a+=1
+        j=0
+        while j<i:
+           z=skalarprodukt(U,Q[i-1])
+           U=subtrahiere(U,multskalar(z,Q[i-1]))
+           j+=1
+        NORM=math.sqrt(skalarprodukt(U,U))
+        d=0
+        p=1/NORM
+        X=multskalar(p,U)
+        while d<n:
+            Q[d][i]=X[d]
+            d+=1
+        i+=1
     return Q
 
 
