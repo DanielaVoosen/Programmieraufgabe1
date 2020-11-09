@@ -5,7 +5,7 @@
 
 # In[1]:
 
-
+import math
 import numpy as np
 from scipy.linalg import norm, hilbert
 
