@@ -67,7 +67,7 @@ def gram_schmidt(A):
             t=t+1
         spalte=spalte+1
     return Q
-        
+    #dasmussdanijetztmalendlichsehendamitdasheierfunktioniert    
 #Testmatrix:
 A=[[3,2],[1,2],[2,2]]
 B=gram_schmidt(A)
