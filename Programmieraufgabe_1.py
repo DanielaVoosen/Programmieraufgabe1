@@ -104,25 +104,25 @@ for n in [5,10,15,20]:
 
 
 ddef mod_gram_schmidt(A):
-    Q=A
+    Q=A #wie in der a
     n=len(A)
     i=1
-    while i < n:
+    while i < n: #wir gehen wieder alle spalten durch
         U=[]
         a=0
-        while a<n:
+        while a<n: #startvektor der iteration
             U.append(Q[a][i])
             a+=1
         j=0
-        while j<i:
+        while j<i: #hier wird U geändert, wie in der Formel
            z=skalarprodukt(U,Q[i-1])
            U=subtrahiere(U,multskalar(z,Q[i-1]))
            j+=1
-        NORM=math.sqrt(skalarprodukt(U,U))
+        NORM=math.sqrt(skalarprodukt(U,U))#letztendlich noch deren Norm
         d=0
         p=1/NORM
-        X=multskalar(p,U)
-        while d<n:
+        X=multskalar(p,U)#das ist Definition der neuen Spalte
+        while d<n:# Übertragen der Spalte auf die Ausgabematrix
             Q[d][i]=X[d]
             d+=1
         i+=1
