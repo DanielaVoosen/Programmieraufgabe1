@@ -81,9 +81,6 @@ print(B)
 
 # ## b)
 
-# In[3]:
-
-
 H = hilbert(30)
 
 for n in [5,10,15,20]:
