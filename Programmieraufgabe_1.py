@@ -103,7 +103,7 @@ for n in [5,10,15,20]:
 # In[4]:
 
 
-ddef mod_gram_schmidt(A):
+def mod_gram_schmidt(A):
     Q=A #wie in der a
     n=len(A)
     i=1
@@ -127,7 +127,7 @@ ddef mod_gram_schmidt(A):
             d+=1
         i+=1
     return Q
-
+    
 
 # ## d)
 
