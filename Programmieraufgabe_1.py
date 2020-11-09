@@ -66,6 +66,7 @@ def gram_schmidt(A):
             Q[t][spalte]=neuespalte[t]#Eintr?ge in Q werden ge?ndert
             t=t+1
         spalte=spalte+1
+    return Q
         
         #Testmatrix:
 A=[[3,2],[1,2],[2,2]]
