@@ -43,11 +43,9 @@ def subtrahiere(V,W):#Vektorsubtraktion
 def gram_schmidt(A):
     n=len(A)
     m=len(A[0])
-    print(n,m)
     Q=A #wird am ende ausgegeben
     spalte=1# da Q=A kann in Spalte 1, bzw 2, angefangen werden
     while spalte<m:# die restlichenw erden durchgegangen
-        print('spalte ',spalte+1)
         altespalte=[]
         z=0
         V=[]
