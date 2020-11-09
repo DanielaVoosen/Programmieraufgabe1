@@ -74,10 +74,6 @@ B=gram_schmidt(A)
 print(B)
 #Ergebnnis nach Wikipedia: [[3,-4/7],[1,8/7],[2,2/7]]
 
-    return Q
-
-
-
 
 
 # ## b)
