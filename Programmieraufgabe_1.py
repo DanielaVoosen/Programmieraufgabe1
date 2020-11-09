@@ -81,16 +81,18 @@ print(B)
 H = hilbert(30)
 
 for n in [5,10,15,20]:
-   i=29 #da zählen bei 0 anfängt
-    H_2=H
-    m=len(H_2)
-    while i>=n:#Es müssen 30-n Spalten entfernt werden
-        h=0
-        while h<m:
-            del(H_2[h][i])#in jeder Zeile wird das ite Element entfernt
-            h+=1
-        i-=1
-    Q=gram_schmidt(H_2)
+    m=len(H)
+    j=0
+    HB=[]
+    while j<m:
+        V=[]
+        i=0
+        while i<n:
+            V.append(H[j][i])
+            i+=1
+        HB.append(V)
+        j+=1
+    Q=gram_schmidt(HB)
     print('Für n= ',n,' gibt das Gram-Schmidt-Verfahren die Matrix ',Q,' zurück')
     
     #HIER FEHLT DER ZWEITE TEIL
