@@ -96,7 +96,7 @@ for n in [5,10, 15, 20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also 
     Q=gram_schmidt(HB)
     print('Für n= ',n,' gibt das Gram-Schmidt-Verfahren die Matrix ',Q,' zurück')
     
-    I=np.identity(len(Q)) #die Einheitsmatrix mit Länge/Breite n wird gebaut
+    I=np.identity(len(Q[0])) #die Einheitsmatrix mit Länge/Breite n wird gebaut
     Q_T=np.transpose(Q) #wir transponieren die Matrix Q
    
     prüfen=(1/n)*norm(I-Q_T*Q) #wir prüfen, ob die Spaten von Q ein Orthonormalsystem bilden (Formel vom Blatt)
