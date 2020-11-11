@@ -81,8 +81,8 @@ H = hilbert(30)
 for n in [5,10,15,20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also aus einer 30x30 Matrix
                        #wird eine 30x5, 30x10,,,)
 
-    bisHier = 30 - n
-    print('Für n = ',n,' gibt das Gram-Schmidt-Verfahren folgende Matrix zurueck: \n', H[0:bisHier,0:bisHier], "\n\n") #Das ist die Macht von Numpy :D Vorteil: Zeilenumbrüche werden richtig
+    Q = H[0:n,0:n]
+    print('Für n = ',n,' gibt das Gram-Schmidt-Verfahren folgende Matrix zurueck: \n', Q, "\n\n") #Das ist die Macht von Numpy :D Vorteil: Zeilenumbrüche werden richtig
                                                                                                                        #gesetzt.
 
     #m=len(H) # m: Anzahl der Zeilen, n: Anzahl der Spalten
@@ -100,12 +100,12 @@ for n in [5,10,15,20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also au
     #print('Für n= ',n,' gibt das Gram-Schmidt-Verfahren folgende Matrix
     #zurueck: \n', Q)
 
-    #I=np.identity(n) #die Einheitsmatrix mit Länge/Breite n wird gebaut
-    #Q_T=np.transpose(Q) #wir transponieren die Matrix Q
+    I = np.identity(n) #die Einheitsmatrix mit Länge/Breite n wird gebaut
+    Q_T = np.transpose(Q) #wir transponieren die Matrix Q
    
-    #prüfen=(1/n)*norm(I-np.matmul(Q_T,Q)) #wir prüfen, ob die Spalten von Q
-    #ein Orthonormalsystem bilden (Formel vom Blatt)
-    #print('Das Prüfen der Matrix ergibt, dass n^(-1)||I-Q^(T)Q|| = ',prüfen)
+    pruefen = (1 / n) * norm(I - np.matmul(Q_T,Q)) #wir prüfen, ob die Spalten von Q ein Orthonormalsystem bilden (Formel vom
+                                                   #Blatt)
+    print('Das Prüfen der Matrix ergibt, dass n^(-1)||I-Q^(T)Q|| = ',pruefen,"\n\n") #was faellt uns auf? Die Werte werden immer kleiner, desto groesser die Matrix?
 
 
 # ## c)
