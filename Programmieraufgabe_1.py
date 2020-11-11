@@ -42,9 +42,9 @@ def subtrahiere(V,W):#Vektorsubtraktion
 def gram_schmidt(A):
     n = len(A)
     m = len(A[0])
-    Q = A #wird am ende ausgegeben
+    Q = A #wird am Ende ausgegeben
     spalte = 1# da Q=A kann in Spalte 1, bzw 2, angefangen werden
-    while spalte < m:# die restlichenw erden durchgegangen
+    while spalte < m:# die restlichen werden durchgegangen
         altespalte = []
         z = 0
         V = []
@@ -81,9 +81,8 @@ H = hilbert(30)
 for n in [5,10,15,20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also aus einer 30x30 Matrix
                        #wird eine 30x5, 30x10,,,)
 
-    Q = H[0:n,0:n]
-    print('Für n = ',n,' gibt das Gram-Schmidt-Verfahren folgende Matrix zurueck: \n', Q, "\n\n") #Das ist die Macht von Numpy :D Vorteil: Zeilenumbrüche werden richtig
-                                                                                                                       #gesetzt.
+    Q_GS = gram_schmidt(H[0:n,0:n]) #Das ist die Macht von Numpy :D Vorteil: Zeilenumbrueche werden richtig gesetzt
+    print('Für n =',n,' gibt das Gram-Schmidt-Verfahren folgende Matrix zurueck: \n\n\n', Q_GS, "\n\n") 
 
     #m=len(H) # m: Anzahl der Zeilen, n: Anzahl der Spalten
     #j=0
@@ -101,11 +100,13 @@ for n in [5,10,15,20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also au
     #zurueck: \n', Q)
 
     I = np.identity(n) #die Einheitsmatrix mit Laenge/Breite n wird gebaut
-    Q_T = np.transpose(Q) #wir transponieren die Matrix Q
+    Q_GS_T = np.transpose(Q_GS) #wir transponieren die Matrix Q
    
-    pruefen = (1 / n) * norm(I - np.matmul(Q_T,Q)) #wir pruefen, ob die Spalten von Q ein Orthonormalsystem bilden (Formel vom
+    pruefen_GS = (1 / n) * norm(I - np.matmul(Q_GS_T,Q_GS)) #wir pruefen, ob die Spalten von Q ein Orthonormalsystem bilden (Formel vom
                                                    #Blatt)
-    print('Das Prüfen der Matrix ergibt, dass n^(-1)||I-Q^(T)Q|| = ',pruefen,"\n\n") #was faellt uns auf? Die Werte werden immer kleiner, desto groesser die Matrix?
+    print('Pruefung durch gram_schmidt: n^(-1)||I-Q^(T)Q|| = ',pruefen_GS,"\n\n") #was faellt uns auf? Die Werte werden immer kleiner, desto groesser die Matrix?
+    #Desto hoeher das n, desto mehr ist das System ein Orthogonalsystem.
+    #Desto hoeher das n, desto kleiner werden die Werte von links oben nach rechts unten in der Hilbertmatrix
 
 
 # ## c)
@@ -115,10 +116,10 @@ def mod_gram_schmidt(A):
     Q = A #wie in der a
     n = len(A)
     i = 1
-    while i < n: #wir gehen wieder alle spalten durch
+    while i < n: #wir gehen wieder alle Spalten durch
         U = []
         a = 0
-        while a < n: #startvektor der iteration
+        while a < n: #startvektor der Iteration
             U.append(Q[a][i])
             a+=1
         j = 0
@@ -126,9 +127,9 @@ def mod_gram_schmidt(A):
            z = skalarprodukt(U,Q[i - 1])
            U = subtrahiere(U,multskalar(z,Q[i - 1]))
            j+=1
-        NORM = math.sqrt(skalarprodukt(U,U))#letztendlich noch deren Norm
+        norm = math.sqrt(skalarprodukt(U,U))#letztendlich noch deren Norm
         d = 0
-        p = 1 / NORM
+        p = 1 / norm
         X = multskalar(p,U)#das ist Definition der neuen Spalte
         while d < n:# Uebertragen der Spalte auf die Ausgabematrix
             Q[d][i] = X[d]
@@ -140,22 +141,30 @@ def mod_gram_schmidt(A):
 # ## d)
 
 # In[5]:
-H = hilbert(30)
-
 for n in [5,10,15,20]:
-    m = len(H)
-    j = 0
-    HB = []
-    while j < m:
-        V = []
-        i = 0
-        while i < n:
-            V.append(H[j][i])
-            i+=1
-        HB.append(V)
-        j+=1
-    Q = mod_gram_schmidt(HB)
-    print('Für n= ',n,' gibt das modifizierte Gram-Schmidt-Verfahren die Matrix ',Q,' zurück')
+    Q_MGS = mod_gram_schmidt(H[0:n,0:n]) #Das ist die Macht von Numpy :D Vorteil: Zeilenumbrueche werden richtig gesetzt
+    print('Für n =',n,' gibt das Gram-Schmidt-Verfahren folgende Matrix zurueck: \n\n\n', Q_MGS, "\n\n") 
+    I = np.identity(n) #die Einheitsmatrix mit Laenge/Breite n wird gebaut
+    Q_MGS_T = np.transpose(Q_MGS) #wir transponieren die Matrix Q
+   
+    pruefen_MGS = (1 / n) * norm(I - np.matmul(Q_MGS_T,Q_MGS)) #wir pruefen, ob die Spalten von Q ein Orthonormalsystem bilden (Formel vom
+                                                   #Blatt)
+    print('Pruefung durch mod_gram_schmidt: n^(-1)||I-Q^(T)Q|| = ',pruefen_MGS,"\n\n") 
+
+#for n in [5,10,15,20]:
+#    m = len(H)
+#    j = 0
+#    HB = []
+#    while j < m:
+#        V = []
+#        i = 0
+#        while i < n:
+#            V.append(H[j][i])
+#            i+=1
+#        HB.append(V)
+#        j+=1
+#    Q = mod_gram_schmidt(HB)
+#    print('Für n= ',n,' gibt das modifizierte Gram-Schmidt-Verfahren die Matrix ',Q,' zurück')
 
 
 # In[ ]:
