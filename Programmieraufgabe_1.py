@@ -80,8 +80,8 @@ print(B)
 
 H = hilbert(30)
 
-for n in [5,10, 15, 20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also aus einer 30x30 Matrix wird eine 30x5, 30x10,,,)
-    m=len(H)
+for n in [5,10,15,20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also aus einer 30x30 Matrix wird eine 30x5, 30x10,,,)
+    m=len(H) #Anzahl der Zeilen
     j=0
     HB=[]
     while j<m:
@@ -94,11 +94,11 @@ for n in [5,10, 15, 20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also 
         j+=1
     Q=gram_schmidt(HB)
     print('Für n= ',n,' gibt das Gram-Schmidt-Verfahren die Matrix ',Q,' zurück')
-    
+
     I=np.identity(n) #die Einheitsmatrix mit Länge/Breite n wird gebaut
     Q_T=np.transpose(Q) #wir transponieren die Matrix Q
    
-    prüfen=(1/n)*norm(I-Q_T*Q) #wir prüfen, ob die Spaten von Q ein Orthonormalsystem bilden (Formel vom Blatt)
+    prüfen=(1/n)*norm(I-np.matmul(Q_T,Q)) #wir prüfen, ob die Spalten von Q ein Orthonormalsystem bilden (Formel vom Blatt)
     print('Das Prüfen der Matrix ergibt, dass n^(-1)||I-Q^(T)Q|| = ',prüfen)
 
 
