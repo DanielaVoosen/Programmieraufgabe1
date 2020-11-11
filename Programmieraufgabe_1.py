@@ -62,7 +62,7 @@ def gram_schmidt(A):
             i = i + 1        
         t = 0
         while t < n:
-            Q[t][spalte] = neuespalte[t]#Eintr?ge in Q werden ge?ndert
+            Q[t][spalte] = neuespalte[t]#Eintraege in Q werden geaendert
             t = t + 1
         spalte = spalte + 1
     return Q
@@ -100,10 +100,10 @@ for n in [5,10,15,20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also au
     #print('Für n= ',n,' gibt das Gram-Schmidt-Verfahren folgende Matrix
     #zurueck: \n', Q)
 
-    I = np.identity(n) #die Einheitsmatrix mit Länge/Breite n wird gebaut
+    I = np.identity(n) #die Einheitsmatrix mit Laenge/Breite n wird gebaut
     Q_T = np.transpose(Q) #wir transponieren die Matrix Q
    
-    pruefen = (1 / n) * norm(I - np.matmul(Q_T,Q)) #wir prüfen, ob die Spalten von Q ein Orthonormalsystem bilden (Formel vom
+    pruefen = (1 / n) * norm(I - np.matmul(Q_T,Q)) #wir pruefen, ob die Spalten von Q ein Orthonormalsystem bilden (Formel vom
                                                    #Blatt)
     print('Das Prüfen der Matrix ergibt, dass n^(-1)||I-Q^(T)Q|| = ',pruefen,"\n\n") #was faellt uns auf? Die Werte werden immer kleiner, desto groesser die Matrix?
 
@@ -130,7 +130,7 @@ def mod_gram_schmidt(A):
         d = 0
         p = 1 / NORM
         X = multskalar(p,U)#das ist Definition der neuen Spalte
-        while d < n:# Übertragen der Spalte auf die Ausgabematrix
+        while d < n:# Uebertragen der Spalte auf die Ausgabematrix
             Q[d][i] = X[d]
             d+=1
         i+=1
