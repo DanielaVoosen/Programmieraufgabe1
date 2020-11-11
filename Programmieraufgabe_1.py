@@ -150,7 +150,7 @@ for n in [5,10,15,20]:
             i+=1
         HB.append(V)
         j+=1
-    Q=gram_schmidt(HB)
+    Q=mod_gram_schmidt(HB)
     print('Für n= ',n,' gibt das Gram-Schmidt-Verfahren die Matrix ',Q,' zurück')
 
 
