@@ -99,7 +99,7 @@ for n in [5,10, 15, 20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also 
     Q_T=np.transpose(Q) #wir transponieren die Matrix Q
    
     prüfen=(1/n)*norm(I-Q_T*Q) #wir prüfen, ob die Spaten von Q ein Orthonormalsystem bilden (Formel vom Blatt)
-    print(prüfen)
+    print('Das Prüfen der Matrix ergibt, dass n^(-1)||I-Q^(T)Q|| = ',prüfen)
 
 
 # ## c)
