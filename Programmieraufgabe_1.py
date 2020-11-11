@@ -80,14 +80,16 @@ print(B)
 
 H = hilbert(30)
 
-for n in [5,10, 15, 20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also aus einer 30x30 Matrix wird eine 5x5, 10x10... Matrix)
+for n in [5,10, 15, 20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also aus einer 30x30 Matrix wird eine 30x5, 30x10,,,)
+    H_2=H
+    m=len(H_2)
     j=0
     HB=[]
-    while j<n:
+    while j<m:
         V=[]
         i=0
         while i<n:
-            V.append(H[j][i])
+            V.append(H_2[j][i])
             i+=1
         HB.append(V)
         j+=1
