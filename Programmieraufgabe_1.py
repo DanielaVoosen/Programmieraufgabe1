@@ -81,23 +81,8 @@ H = hilbert(30)
 for n in [5,10,15,20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also aus einer 30x30 Matrix
                        #wird eine 30x5, 30x10,,,)
 
-    Q_GS = gram_schmidt(H[0:n,0:n]) #Das ist die Macht von Numpy :D Vorteil: Zeilenumbrueche werden richtig gesetzt
+    Q_GS = gram_schmidt(H[0:,0:n]) #Das ist die Macht von Numpy :D Vorteil: Zeilenumbrueche werden richtig gesetzt
     print('Für n =',n,' gibt das Gram-Schmidt-Verfahren folgende Matrix zurueck: \n\n\n', Q_GS, "\n\n") 
-
-    #m=len(H) # m: Anzahl der Zeilen, n: Anzahl der Spalten
-    #j=0
-    #HB=[]
-    #while j<m:
-    #    V=[]
-    #    i=0
-    #    while i<n:
-    #        V.append(H[j][i])
-    #        i+=1
-    #    HB.append(V)
-    #    j+=1
-    #Q=gram_schmidt(HB)
-    #print('Für n= ',n,' gibt das Gram-Schmidt-Verfahren folgende Matrix
-    #zurueck: \n', Q)
 
     I = np.identity(n) #die Einheitsmatrix mit Laenge/Breite n wird gebaut
     Q_GS_T = np.transpose(Q_GS) #wir transponieren die Matrix Q
@@ -142,7 +127,7 @@ def mod_gram_schmidt(A):
 
 # In[5]:
 for n in [5,10,15,20]:
-    Q_MGS = mod_gram_schmidt(H[0:n,0:n]) #Das ist die Macht von Numpy :D Vorteil: Zeilenumbrueche werden richtig gesetzt
+    Q_MGS = mod_gram_schmidt(H[0:,0:n]) #Das ist die Macht von Numpy :D Vorteil: Zeilenumbrueche werden richtig gesetzt
     print('Für n =',n,' gibt das Gram-Schmidt-Verfahren folgende Matrix zurueck: \n\n\n', Q_MGS, "\n\n") 
     I = np.identity(n) #die Einheitsmatrix mit Laenge/Breite n wird gebaut
     Q_MGS_T = np.transpose(Q_MGS) #wir transponieren die Matrix Q
@@ -150,21 +135,6 @@ for n in [5,10,15,20]:
     pruefen_MGS = (1 / n) * norm(I - np.matmul(Q_MGS_T,Q_MGS)) #wir pruefen, ob die Spalten von Q ein Orthonormalsystem bilden (Formel vom
                                                    #Blatt)
     print('Pruefung durch mod_gram_schmidt: n^(-1)||I-Q^(T)Q|| = ',pruefen_MGS,"\n\n") 
-
-#for n in [5,10,15,20]:
-#    m = len(H)
-#    j = 0
-#    HB = []
-#    while j < m:
-#        V = []
-#        i = 0
-#        while i < n:
-#            V.append(H[j][i])
-#            i+=1
-#        HB.append(V)
-#        j+=1
-#    Q = mod_gram_schmidt(HB)
-#    print('Für n= ',n,' gibt das modifizierte Gram-Schmidt-Verfahren die Matrix ',Q,' zurück')
 
 
 # In[ ]:
