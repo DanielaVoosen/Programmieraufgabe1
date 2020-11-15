@@ -49,12 +49,17 @@ def gram_schmidt(A):
         z = 0
         V = []
         while z < n:
-                V.append(Q[z][spalte - 1])#V entpricht v_i
+                #V.append(Q[z][spalte - 1])#V entpricht v_i
                 altespalte.append(A[z][spalte])#erstes Element aus Iteration
                 z = z + 1
         i = 0
         neuespalte = altespalte
         while i < spalte:
+            z=0
+            V=[]
+            while z<n:
+                V.append(Q[z][i])
+                z+=1  
             a = skalarprodukt(V,altespalte)
             b = skalarprodukt(V,V)
             C = multskalar(a / b,V)
