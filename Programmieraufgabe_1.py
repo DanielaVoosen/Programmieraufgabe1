@@ -41,44 +41,60 @@ def subtrahiere(V,W):#Vektorsubtraktion
 
 def gram_schmidt(A):
     n = len(A)
+    print('n: ', n)
     m = len(A[0])
+    print('m: ', m)
     Q = A #wird am Ende ausgegeben
-    spalte = 1# da Q=A kann in Spalte 1, bzw 2, angefangen werden
+    spalte = 0# da Q=A kann in Spalte 1, bzw 2, angefangen werden
     while spalte < m:# die restlichen werden durchgegangen
+        print('neue Runde. Q: ', Q)
+        print('spalte: ', spalte)
         altespalte = []
         z = 0
         V = []
         while z < n:
+                print('z: ', z)
                 #V.append(Q[z][spalte - 1])#V entpricht v_i
                 altespalte.append(A[z][spalte])#erstes Element aus Iteration
+                print('altespalte: ', altespalte)
                 z = z + 1
         i = 0
         neuespalte = altespalte
         while i < spalte:
+            print('i: ', i)
             z=0
             V=[]
             while z<n:
                 V.append(Q[z][i])
+                print('V:', V)
                 z+=1  
             a = skalarprodukt(V,altespalte)
+            print('a: ', a)
             b = skalarprodukt(V,V)
+            print('b: ', b)
             C = multskalar(a / b,V)
+            print('C: ', C)
+            print('neuespalte: ', neuespalte)
             neuespalte = subtrahiere(neuespalte, C)#entspricht der Summe
+            print('neuespalte: ', neuespalte)
             i = i + 1        
         t = 0
         normiere=1/(math.sqrt(skalarprodukt(neuespalte,neuespalte)))
+        print('normiere: ', normiere)
         while t < n:
-            Q[t][spalte] = multskalar(normiere,neuespalte[t])#Eintraege in Q werden geaendert
+            print('t: ', t)
+            print('spalte: ', spalte)
+            print('neuespalte[t]: ', neuespalte[t])
+            Q[t][spalte] = normiere*neuespalte[t] #Eintraege in Q werden geaendert
+            print('Q[t]: ', Q[t])
             t = t + 1
         spalte = spalte + 1
     return Q
     
 #Testmatrix:
-A = [[3,2],[1,2],[2,2]]
+A = [[1,2,3], [4,5,6]]
 B = gram_schmidt(A)
 print(B)
-#Ergebnnis nach Wikipedia: [[3,-4/7],[1,8/7],[2,2/7]]
-
 
 
 # ## b)
