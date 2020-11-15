@@ -62,8 +62,9 @@ def gram_schmidt(A):
             neuespalte=subtrahiere(neuespalte, C)#entspricht der Summe
             i=i+1        
         t=0
+        normiere=1/(math.sqrt(skalarprodukt(neuespalte,neuespalte)))
         while t<n:
-            Q[t][spalte]=neuespalte[t]#Eintr?ge in Q werden ge?ndert
+            Q[t][spalte]=multskalar(normiere,neuespalte[t])#Eintr?ge in Q werden ge?ndert und normiert
             t=t+1
         spalte=spalte+1
     return Q
