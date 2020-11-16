@@ -116,6 +116,9 @@ for n in [5,10,15,20]:
     print('Pruefung durch mod_gram_schmidt: n^(-1)||I-Q^(T)Q|| = ',pruefen_MGS,"\n\n") 
 
     #Was fällt uns auf: die Zahlen wachsen deutlich langsamer. 
+    #Das erste Verfahren scheint mehr Probleme mit Dezimalzahlen zu haben --> Rundungsfehlerr --> Orthogonalität geht verloren
+    #--> instabiler(?)
+
 
 
 # In[ ]:
