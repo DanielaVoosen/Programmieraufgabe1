@@ -58,8 +58,7 @@ A = A + Fraction()
 B=gram_schmidt(A)
 print('G.S: ', B)
 
-"""
-# ## b)
+#b)
 H = hilbert(30)
 
 for n in [5,10,15,20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also aus einer 30x30 Matrix
@@ -73,33 +72,29 @@ for n in [5,10,15,20]: #wir bauen uns hier eine kleinere Hilbert-Matrix (also au
    
     pruefen_GS = (1 / n) * norm(I - np.matmul(Q_GS_T,Q_GS)) #wir pruefen, ob die Spalten von Q ein Orthonormalsystem bilden (Formel vom
                                                    #Blatt)
-    print('Pruefung durch gram_schmidt: n^(-1)||I-Q^(T)Q|| = ',pruefen_GS,"\n\n") #was faellt uns auf? Die Werte werden immer kleiner, desto groesser die Matrix?
+    print('Pruefung durch gram_schmidt: n^(-1)||I-Q^(T)Q|| = ',pruefen_GS,"\n\n") 
+    #was faellt uns auf? Die Werte werden immer groesser, desto groesser die Matrix
     #Desto hoeher das n, desto mehr ist das System ein Orthogonalsystem.
     #Desto hoeher das n, desto kleiner werden die Werte von links oben nach rechts unten in der Hilbertmatrix
-
 
 # ## c)
 
 # In[4]:
 def mod_gram_schmidt(A):
     Q = A #wie in der a
-    n = len(A)
-    i = 1
-    while i < n: #wir gehen wieder alle Spalten durch
-        U = []
-        a = 0
-        while a < n: #startvektor der Iteration
-            U.append(Q[a][i])
-            a+=1
-        j = 0
-        while j < i: #hier wird U geändert, wie in der Formel
-           z = skalarprodukt(U,Q[i - 1])
-           U = subtrahiere(U,multskalar(z,Q[i - 1]))
-           j+=1
-        norm = math.sqrt(skalarprodukt(U,U))#letztendlich noch deren Norm
+    m = len(A[0])
+    i = 0
+    while i < m: #wir gehen wieder alle Spalten durch
+        U_i = A[:, i] #startvektor der Iteration
+        if i>0:
+            z=np.dot(U_i,Q[:, i-1])
+            U_i=U_i-multskalar(z,Q[:, i-1])
+        norm = math.sqrt(np.dot(U_i,U_i))#letztendlich noch deren Norm
+        norm = Fraction.from_float(norm)
         d = 0
         p = 1 / norm
-        X = multskalar(p,U)#das ist Definition der neuen Spalte
+        X = multskalar(p,U_i)#das ist Definition der neuen Spalte
+        n = len(A)
         while d < n:# Uebertragen der Spalte auf die Ausgabematrix
             Q[d][i] = X[d]
             d+=1
@@ -120,9 +115,9 @@ for n in [5,10,15,20]:
                                                    #Blatt)
     print('Pruefung durch mod_gram_schmidt: n^(-1)||I-Q^(T)Q|| = ',pruefen_MGS,"\n\n") 
 
+    #Was fällt uns auf: die Zahlen wachsen deutlich langsamer. 
+
 
 # In[ ]:
-
-"""
 
 
