@@ -7,19 +7,12 @@
 import math
 import numpy as np
 from scipy.linalg import norm, hilbert
+from fractions import Fraction
 
 
 # ## a)
 
 # In[2]:
-def skalarprodukt(V,W):#Normales Skalarprodukt
-    n = len(V)
-    x = 0
-    i = 0
-    while i < n:
-        x = x + V[i] * W[i]
-        i = i + 1
-    return x
 
 def multskalar(a,W):#Multiplikation: Skalar, Vektor
     n = len(W)
@@ -30,73 +23,42 @@ def multskalar(a,W):#Multiplikation: Skalar, Vektor
         i = i + 1
     return B
 
-def subtrahiere(V,W):#Vektorsubtraktion
-    n = len(V)
-    B = []
-    i = 0
-    while i < n:
-        B.append(V[i] - W[i])
-        i = i + 1
-    return B
-
 def gram_schmidt(A):
     n = len(A)
-    print('n: ', n)
     m = len(A[0])
-    print('m: ', m)
     Q = A #wird am Ende ausgegeben
-    spalte = 0# da Q=A kann in Spalte 1, bzw 2, angefangen werden
+    spalte = 0
     while spalte < m:# die restlichen werden durchgegangen
-        print('neue Runde. Q: ', Q)
-        print('spalte: ', spalte)
-        altespalte = []
-        z = 0
-        V = []
-        while z < n:
-                print('z: ', z)
-                #V.append(Q[z][spalte - 1])#V entpricht v_i
-                altespalte.append(A[z][spalte])#erstes Element aus Iteration
-                print('altespalte: ', altespalte)
-                z = z + 1
+        altespalte = A[:, spalte] #wir setzen "altespalte" als die spalte von A
         i = 0
         neuespalte = altespalte
         while i < spalte:
-            print('i: ', i)
-            z=0
-            V=[]
-            while z<n:
-                V.append(Q[z][i])
-                print('V:', V)
-                z+=1  
-            a = skalarprodukt(V,altespalte)
-            print('a: ', a)
-            b = skalarprodukt(V,V)
-            print('b: ', b)
-            C = multskalar(a / b,V)
-            print('C: ', C)
-            print('neuespalte: ', neuespalte)
-            neuespalte = subtrahiere(neuespalte, C)#entspricht der Summe
-            print('neuespalte: ', neuespalte)
-            i = i + 1        
+            V = A[:, i] #der neue Vektor V ist die i-te Spalte von A
+            a = np.dot(V,altespalte) # Skalarprodukt
+            b = np.dot(V,V) #Skalarprodukt
+            C = multskalar(a / b,V) #Skalarmultilikation
+            neuespalte = neuespalte - C #entspricht der Summe
+            i = i + 1    
         t = 0
-        normiere=1/(math.sqrt(skalarprodukt(neuespalte,neuespalte)))
-        print('normiere: ', normiere)
-        while t < n:
-            print('t: ', t)
-            print('spalte: ', spalte)
-            print('neuespalte[t]: ', neuespalte[t])
-            Q[t][spalte] = normiere*neuespalte[t] #Eintraege in Q werden geaendert
-            print('Q[t]: ', Q[t])
+        if np.dot(neuespalte,neuespalte)!=0: #wenn das Skalarprodukt nicht null ist, dann soll er die Norm berechnen
+            normiere=1/(math.sqrt(np.dot(neuespalte,neuespalte)))
+            normiere_bruch = Fraction.from_float(normiere)
+        else:
+            normiere=0
+        while t < n: #wir setzen nun in Q die neuen EInträge ein 
+            Q[t][spalte] = normiere_bruch*neuespalte[t]
             t = t + 1
         spalte = spalte + 1
     return Q
-    
-#Testmatrix:
-A = [[1,2,3], [4,5,6]]
-B = gram_schmidt(A)
-print(B)
+ 
+#Testmatrix
+A = np.array([[1,2,3], [4,5,6]]) #wir erstllen eine beliebige Matrix
+A.dtype #hier und in der nächsten Zeile sorgen wir dafruer, dass in den Eintraegen der Matrix auch Brueche stehen duerfen
+A = A + Fraction()
+B=gram_schmidt(A)
+print('G.S: ', B)
 
-
+"""
 # ## b)
 H = hilbert(30)
 
@@ -161,6 +123,6 @@ for n in [5,10,15,20]:
 
 # In[ ]:
 
-
+"""
 
 
